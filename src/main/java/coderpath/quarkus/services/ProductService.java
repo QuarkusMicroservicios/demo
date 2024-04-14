@@ -35,8 +35,8 @@ public class ProductService {
             while (cursor.hasNext()) {
                 Document document = cursor.next();
                 Product product = new Product();
-                product.setName(""+document.getString("name"));
-                product.setDescription(""+document.getString("description"));
+            //    product.setName(document.getString("name"));
+            //    product.setDescription(document.getString("description"));
                 list.add(product);
             }
         } finally {
@@ -47,8 +47,8 @@ public class ProductService {
 
     public void add(Product product){
         Document document = new Document()
-                .append("name", product.getName())
-                .append("description", product.getDescription());
+            .append("name", product.getName())
+             .append("description", product.getDescription());
         getCollection().insertOne(document);
     }
 

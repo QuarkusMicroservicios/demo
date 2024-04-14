@@ -25,5 +25,12 @@ public class Product extends PanacheMongoEntity {
     public Status status;
     public String id;
 
+    public String getDescription() {
+        return description;
+    }
+
+    public String getName() {
+        return name;
+    }
 }
 
