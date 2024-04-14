@@ -1,7 +1,6 @@
-package coderpath.quarkus.resteasyjackson;
+package coderpath.quarkus.controller;
 
 
-import java.net.URI;
 import java.util.List;
 import coderpath.quarkus.services.ProductService;
 import jakarta.ws.rs.*;
@@ -21,7 +20,7 @@ public class ProductApi {
 
     @GET
     public List<Product> list() {
-        return service.findDisposable();
+        return service.list();
     }
 
     @POST
@@ -39,7 +38,10 @@ public class ProductApi {
 
 
     @DELETE
-    public Response delete(Product p) {
+    @Path("/id/{id}")
+    public Response delete(@PathParam("id") String id,Product p) {
+        p = Product.findById(new ObjectId(id));
+        p.delete();
         service.deleteLoics();
         return Response.ok().build();
     }
@@ -51,7 +53,7 @@ public class ProductApi {
     }*/
 
     @GET
-    @Path("/id/{id}")
+    @Path("/it/{id}")
     public Response getProduct(@PathParam("id") String id) {
         var product = Product.findById(new ObjectId(id));
         return product != null

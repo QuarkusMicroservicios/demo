@@ -7,6 +7,7 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 import org.bson.Document;
 
 import java.io.ObjectInputFilter;
@@ -68,5 +69,9 @@ public class ProductService {
     public void deleteLoics(){
         productRepository.delete("name", "Loïc");
     }
-
+    @Transactional
+    public List<Product> listProduct(){
+        List<Product> products = productRepository.list("select p from Product p");
+        return products;
+    }
 }
