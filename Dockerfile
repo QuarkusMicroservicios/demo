@@ -11,13 +11,13 @@ COPY ./src /code/src
 ## Stage 2 : create the docker final image
 FROM registry.access.redhat.com/ubi8/ubi-minimal
 WORKDIR /work
-COPY --from=build /code/target/*-runner /work/application
+COPY --from=build /code/target/*-runner /work
 
 # set up permissions for user `1001`
-RUN chmod 775 /work/application \
-  && chown -R 1001 /work/application \
-  && chmod -R "g+rwX" /work/application \
-  && chown -R 1001:root /work/application
+RUN chmod 775 /work \
+  && chown -R 1001 /work \
+  && chmod -R "g+rwX" /work \
+  && chown -R 1001:root /work
 
 EXPOSE 8080
 USER 1001
