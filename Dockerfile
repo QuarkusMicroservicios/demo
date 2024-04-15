@@ -6,8 +6,6 @@ COPY --chown=quarkus:quarkus pom.xml /code/
 USER quarkus
 WORKDIR /code
 COPY ./src /code/src
-RUN mvn -f /code -Pnative clean package
-
 
 ## Stage 2 : create the docker final image
 FROM quay.io/quarkus/quarkus-micro-image:2.0
