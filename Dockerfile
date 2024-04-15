@@ -15,9 +15,9 @@ COPY --from=build /code/target/*-runner /work/application
 
 # set up permissions for user `1001`
 RUN chmod 775 /work/application \
-  && chown -R 1001 /work \
-  && chmod -R "g+rwX" /work \
-  && chown -R 1001:root /work
+  && chown -R 1001 /work/application \
+  && chmod -R "g+rwX" /work/application \
+  && chown -R 1001:root /work/application
 
 EXPOSE 8080
 USER 1001
