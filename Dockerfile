@@ -5,6 +5,7 @@ COPY --chown=quarkus:quarkus .mvn /code/.mvn
 COPY --chown=quarkus:quarkus pom.xml /code/
 USER quarkus
 WORKDIR /code
+COPY . /code/
 COPY ./src /code/src
 
 ## Stage 2 : create the docker final image
@@ -20,5 +21,4 @@ RUN chmod 775 /work /work/target/application \
 
 EXPOSE 8080
 USER 1001
-
-CMD ["./application", "-Dquarkus.http.host=0.0.0.0"]
+CMD ["./application", "-XX:+PrintGC", "-XX:+PrintGCTimeStamps", "-XX:+VerboseGC", "+XX:+PrintHeapShape", "-Xmx128m", "-Dquarkus.http.host=0.0.0.0"]
