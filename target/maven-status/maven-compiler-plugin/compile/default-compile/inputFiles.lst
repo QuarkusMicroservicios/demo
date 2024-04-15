@@ -1,0 +1,8 @@
+/home/joffre/spring/quarkus/backend/demo/src/main/java/coderpath/quarkus/AppLifecycleBean.java
+/home/joffre/spring/quarkus/backend/demo/src/main/java/coderpath/quarkus/CustomMain.java
+/home/joffre/spring/quarkus/backend/demo/src/main/java/coderpath/quarkus/ExampleResource.java
+/home/joffre/spring/quarkus/backend/demo/src/main/java/coderpath/quarkus/controller/ProductApi.java
+/home/joffre/spring/quarkus/backend/demo/src/main/java/coderpath/quarkus/entites/Product.java
+/home/joffre/spring/quarkus/backend/demo/src/main/java/coderpath/quarkus/repositories/ProductRepository.java
+/home/joffre/spring/quarkus/backend/demo/src/main/java/coderpath/quarkus/resteasyjackson/MyObjectMapperCustomizer.java
+/home/joffre/spring/quarkus/backend/demo/src/main/java/coderpath/quarkus/services/ProductService.java

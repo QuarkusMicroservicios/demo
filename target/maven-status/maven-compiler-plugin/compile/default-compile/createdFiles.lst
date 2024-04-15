@@ -1,0 +1,10 @@
+coderpath/quarkus/AppLifecycleBean.class
+coderpath/quarkus/CustomMain$CustomApp.class
+coderpath/quarkus/repositories/ProductRepository.class
+coderpath/quarkus/CustomMain.class
+coderpath/quarkus/controller/ProductApi.class
+coderpath/quarkus/services/ProductService.class
+META-INF/panache-archive.marker
+coderpath/quarkus/resteasyjackson/MyObjectMapperCustomizer.class
+coderpath/quarkus/entites/Product.class
+coderpath/quarkus/ExampleResource.class
