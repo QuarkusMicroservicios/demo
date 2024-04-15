@@ -14,7 +14,7 @@ WORKDIR /work
 COPY --from=build /code/target/*-runner /work/application
 
 # set up permissions for user `1001`
-RUN chmod 775 /work /work/target/application \
+RUN chmod 775 /work /work/application \
   && chown -R 1001 /work \
   && chmod -R "g+rwX" /work \
   && chown -R 1001:root /work
