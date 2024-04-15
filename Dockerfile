@@ -5,9 +5,8 @@ COPY --chown=quarkus:quarkus .mvn /code/.mvn
 COPY --chown=quarkus:quarkus pom.xml /code/
 USER quarkus
 WORKDIR /code
-RUN mvn -B org.apache.maven.plugins:maven-dependency-plugin:3.1.2:go-offline
 COPY ./src /code/src
-RUN mvn package -Dnative clean package
+RUN ./mvnw package -Dnative  clean package
 
 ## Stage 2 : create the docker final image
 FROM quay.io/quarkus/quarkus-micro-image:2.0
