@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: coderpath.quarkus.ExampleResourceTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 30.30 s -- in coderpath.quarkus.ExampleResourceTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 19.35 s -- in coderpath.quarkus.ExampleResourceTest
