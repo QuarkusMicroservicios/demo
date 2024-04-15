@@ -1,18 +1,26 @@
-
 ## Stage 1 : build with maven builder image with native capabilities
-
-FROM quay.io/quarkus/ubi-quarkus-mandrel-builder-image:22.3-java17 AS build
-COPY . /tmp/my-project
-USER root
-RUN chown -R quarkus /tmp/my-project
+FROM quay.io/quarkus/ubi-quarkus-mandrel-builder-image:jdk-17 AS build
+COPY --chown=quarkus:quarkus mvnw /code/mvnw
+COPY --chown=quarkus:quarkus .mvn /code/.mvn
+COPY --chown=quarkus:quarkus pom.xml /code/
 USER quarkus
-RUN mvn -f /tmp/my-project/pom.xml  clean package
+WORKDIR /code
+RUN ./mvnw -B org.apache.maven.plugins:maven-dependency-plugin:3.1.2:go-offline
+COPY src /code/src
+RUN ./mvnw package -Dnative
 
 ## Stage 2 : create the docker final image
-FROM registry.access.redhat.com/ubi8/ubi-minimal
-WORKDIR /usr/src/app/target/
-COPY --from=build /tmp/my-project/target/*-runner /usr/src/app/target/application
-RUN chmod 775 /usr/src/app/target
-EXPOSE 8080
-CMD ["./application", "-XX:+PrintGC", "-XX:+PrintGCTimeStamps", "-XX:+VerboseGC", "+XX:+PrintHeapShape", "-Xmx128m", "-Dquarkus.http.host=0.0.0.0"]
+FROM quay.io/quarkus/quarkus-micro-image:2.0
+WORKDIR /work/
+COPY --from=build /code/target/*-runner /work/application
 
+# set up permissions for user `1001`
+RUN chmod 775 /work /work/application \
+  && chown -R 1001 /work \
+  && chmod -R "g+rwX" /work \
+  && chown -R 1001:root /work
+
+EXPOSE 8080
+USER 1001
+
+CMD ["./application", "-Dquarkus.http.host=0.0.0.0"]
