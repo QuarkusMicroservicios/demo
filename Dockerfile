@@ -9,7 +9,7 @@ COPY . /code/
 COPY ./src /code/src
 
 ## Stage 2 : create the docker final image
-FROM quay.io/quarkus/quarkus-micro-image:2.0
+FROM registry.access.redhat.com/ubi8/ubi-minimal
 WORKDIR /work
 COPY --from=build /code/target/*-runner /work/application
 
