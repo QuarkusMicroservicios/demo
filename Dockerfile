@@ -6,7 +6,7 @@ COPY --chown=quarkus:quarkus pom.xml /code/
 USER quarkus
 WORKDIR /code
 COPY ./src /code/src
-RUN ./mvnw package -Dnative  clean package
+RUN ./mvnw package -Dnative
 
 ## Stage 2 : create the docker final image
 FROM quay.io/quarkus/quarkus-micro-image:2.0
